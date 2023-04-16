@@ -16,6 +16,13 @@ const animatePress = (currentColor) => {
   }, 100);
 };
 
+const animateGameOver = () => {
+  $("body").addClass("game-over");
+  setTimeout(() => {
+    $("body").removeClass("game-over");
+  }, 200);
+};
+
 const nextSequence = () => {
   const randomNumber = Math.floor(Math.random() * 4);
   const randomChosenColor = buttonColors[randomNumber];
@@ -29,7 +36,6 @@ const nextSequence = () => {
 
 const checkAnswer = (currentLevel) => {
   if (userClickedPattern[currentLevel] === gamePattern[currentLevel]) {
-    console.log("success");
     if (currentLevel === gamePattern.length - 1) {
       setTimeout(() => {
         nextSequence();
@@ -38,6 +44,9 @@ const checkAnswer = (currentLevel) => {
     }
   } else {
     console.log("wrong");
+    playSound("wrong");
+    animateGameOver();
+    $("h1").text("Game Over, Press Any Key to Restart");
   }
 };
 
