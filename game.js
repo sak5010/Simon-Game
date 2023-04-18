@@ -1,5 +1,5 @@
 const buttonColors = ["red", "blue", "green", "yellow"];
-const gamePattern = [];
+let gamePattern = [];
 let userClickedPattern = [];
 let isStartedGame = false;
 let level = 0;
@@ -43,11 +43,18 @@ const checkAnswer = (currentLevel) => {
       }, 1000);
     }
   } else {
-    console.log("wrong");
+    startOver();
     playSound("wrong");
     animateGameOver();
     $("h1").text("Game Over, Press Any Key to Restart");
   }
+};
+
+const startOver = () => {
+  isStartedGame = false;
+  level = 0;
+  gamePattern = [];
+  userClickedPattern = [];
 };
 
 $(document).on("keypress", () => {
