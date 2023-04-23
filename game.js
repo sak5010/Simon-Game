@@ -61,6 +61,7 @@ $(document).on("keypress", () => {
   if (!isStartedGame) {
     nextSequence();
   }
+  isStartedGame = true;
 });
 
 $(".btn").on("click", (event) => {
